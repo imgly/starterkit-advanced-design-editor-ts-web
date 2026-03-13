@@ -50,7 +50,7 @@ Load content into the editor using one of these methods:
 
 ```typescript
 // Create a blank design canvas
-await cesdk.createDesignScene();
+await cesdk.actions.run('scene.create');
 
 // Load from a template archive
 await cesdk.loadFromArchiveURL('https://example.com/template.zip');
