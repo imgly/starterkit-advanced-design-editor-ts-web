@@ -15,7 +15,7 @@ import { initAdvancedEditor } from './imgly';
 // ============================================================================
 
 const config = {
-  userId: 'starterkit-advanced-editor-user',
+  userId: 'starterkit-advanced-editor-user'
 
   // Local assets
   // baseURL: `/assets/`,
