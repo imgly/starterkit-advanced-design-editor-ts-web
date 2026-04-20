@@ -3,8 +3,7 @@
 Full-featured design editing for your web app with an advanced desktop-style interface — layers panel, precise controls, and professional export options. Built with [CE.SDK](https://img.ly/creative-sdk) by [IMG.LY](https://img.ly), runs entirely in the browser with no server dependencies.
 
 <p>
-  <a href="https://img.ly/docs/cesdk/starterkits/advanced-editor/">Documentation</a> |
-  <a href="https://img.ly/showcases/cesdk">Live Demo</a>
+  <a href="https://img.ly/docs/cesdk/js/starterkits/advanced-editor-87riel/">Documentation</a>
 </p>
 
 ![Advanced Design Editor starter kit showing a desktop-style design interface with layers panel](./hero.webp)
