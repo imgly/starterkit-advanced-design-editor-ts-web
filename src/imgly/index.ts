@@ -126,5 +126,4 @@ export async function initAdvancedEditor(cesdk: CreativeEditorSDK) {
       ]
     }
   );
-
 }
