@@ -15,10 +15,12 @@ import { initAdvancedEditor } from './imgly';
 // ============================================================================
 
 const config = {
-  userId: 'starterkit-advanced-editor-user'
+  userId: 'starterkit-advanced-design-editor-user',
 
-  // Local assets
-  // baseURL: `/assets/`,
+  // IMG.LY CDN (for quick testing only, NOT recommended for production)
+
+  // Local assets for development
+
 };
 
 // ============================================================================
