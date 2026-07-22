@@ -28,11 +28,11 @@ import {
 } from '@cesdk/cesdk-js/plugins';
 
 // Configuration and plugins
-import { AdvancedEditorConfig } from '../../advanced-editor/plugin';
+import { AdvancedEditorConfig } from './config/plugin';
 import { setupBackgroundRemovalPlugin } from './plugins/background-removal';
 
 // Re-export for external use
-export { AdvancedEditorConfig } from '../../advanced-editor/plugin';
+export { AdvancedEditorConfig } from './config/plugin';
 export { setupBackgroundRemovalPlugin } from './plugins/background-removal';
 
 /**
