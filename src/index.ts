@@ -37,7 +37,7 @@ CreativeEditorSDK.create('#cesdk_container', config)
     // Scene Loading
     // ============================================================================
 
-    await cesdk.loadFromURL(
+    await cesdk.load(
       'https://cdn.img.ly/packages/imgly/plugin-marketing-asset-source-web/1.0.0/assets/templates/9-16-marketing-ad-fragrance/scene.scene'
     );
   })
