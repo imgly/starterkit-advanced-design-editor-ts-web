@@ -10,6 +10,7 @@ import CreativeEditorSDK from '@cesdk/cesdk-js';
 
 import { initAdvancedEditor } from './imgly';
 
+
 // ============================================================================
 // Configuration
 // ============================================================================
