@@ -4,7 +4,7 @@
  * This module provides the main entry point for initializing the advanced editor.
  * Import and call `initAdvancedEditor()` to configure a CE.SDK instance for advanced editing.
  *
- * @see https://img.ly/docs/cesdk/js/getting-started/
+ * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
  */
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';
@@ -27,13 +27,13 @@ import {
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
 
+import BackgroundRemovalPlugin from '@imgly/plugin-background-removal-web';
+
 // Configuration and plugins
-import { AdvancedEditorConfig } from '../../advanced-editor/plugin';
-import { setupBackgroundRemovalPlugin } from './plugins/background-removal';
+import { AdvancedEditorConfig } from './config/plugin';
 
 // Re-export for external use
-export { AdvancedEditorConfig } from '../../advanced-editor/plugin';
-export { setupBackgroundRemovalPlugin } from './plugins/background-removal';
+export { AdvancedEditorConfig } from './config/plugin';
 
 /**
  * Initialize the CE.SDK Advanced Editor with a complete configuration.
@@ -61,53 +61,49 @@ export async function initAdvancedEditor(cesdk: CreativeEditorSDK) {
   // cesdk.setLocale('en');
 
   // ============================================================================
-  // Background Removal Plugin
-  // ============================================================================
-
-  setupBackgroundRemovalPlugin(cesdk);
-
-  // ============================================================================
   // Asset Source Plugins
   // ============================================================================
 
-  await cesdk.addPlugin(new BlurAssetSource());
-  await cesdk.addPlugin(new ImageColorsAssetSource());
-  await cesdk.addPlugin(new ColorPaletteAssetSource());
-  await cesdk.addPlugin(new CropPresetsAssetSource());
+  await Promise.all([
+    cesdk.addPlugin(new BlurAssetSource()),
+    cesdk.addPlugin(new ImageColorsAssetSource()),
+    cesdk.addPlugin(new ColorPaletteAssetSource()),
+    cesdk.addPlugin(new CropPresetsAssetSource()),
 
-  await cesdk.addPlugin(
-    new UploadAssetSources({
-      include: ['ly.img.image.upload']
-    })
-  );
+    cesdk.addPlugin(
+      new UploadAssetSources({
+        include: ['ly.img.image.upload']
+      })
+    ),
 
-  await cesdk.addPlugin(
-    new DemoAssetSources({
-      include: [
-        'ly.img.templates.blank.*',
-        'ly.img.templates.presentation.*',
-        'ly.img.templates.print.*',
-        'ly.img.templates.social.*',
-        'ly.img.image.*'
-      ]
-    })
-  );
+    cesdk.addPlugin(
+      new DemoAssetSources({
+        include: [
+          'ly.img.templates.blank.*',
+          'ly.img.templates.presentation.*',
+          'ly.img.templates.print.*',
+          'ly.img.templates.social.*',
+          'ly.img.image.*'
+        ]
+      })
+    ),
 
-  await cesdk.addPlugin(new EffectsAssetSource());
-  await cesdk.addPlugin(new FiltersAssetSource());
-  await cesdk.addPlugin(new PagePresetsAssetSource());
-  await cesdk.addPlugin(new StickerAssetSource());
-  await cesdk.addPlugin(new TextAssetSource());
-  await cesdk.addPlugin(new TextComponentAssetSource());
-  await cesdk.addPlugin(new TypefaceAssetSource());
-  await cesdk.addPlugin(new VectorShapeAssetSource());
+    cesdk.addPlugin(new EffectsAssetSource()),
+    cesdk.addPlugin(new FiltersAssetSource()),
+    cesdk.addPlugin(new PagePresetsAssetSource()),
+    cesdk.addPlugin(new StickerAssetSource()),
+    cesdk.addPlugin(new TextAssetSource()),
+    cesdk.addPlugin(new TextComponentAssetSource()),
+    cesdk.addPlugin(new TypefaceAssetSource()),
+    cesdk.addPlugin(new VectorShapeAssetSource()),
 
-  // Premium templates
-  await cesdk.addPlugin(
-    new PremiumTemplatesAssetSource({
-      include: ['ly.img.templates.premium.*']
-    })
-  );
+    // Premium templates
+    cesdk.addPlugin(
+      new PremiumTemplatesAssetSource({
+        include: ['ly.img.templates.premium.*']
+      })
+    )
+  ]);
 
   // ============================================================================
   // Navigation Bar Actions
@@ -123,9 +119,21 @@ export async function initAdvancedEditor(cesdk: CreativeEditorSDK) {
         'ly.img.exportPDF.navigationBar',
         'ly.img.exportScene.navigationBar',
         'ly.img.exportArchive.navigationBar',
-        'ly.img.importScene.navigationBar',
-        'ly.img.importArchive.navigationBar'
+        'ly.img.importScene.navigationBar'
       ]
     }
+  );
+
+  // ============================================================================
+  // Background Removal Plugin
+  // ============================================================================
+
+  await cesdk.addPlugin(
+    BackgroundRemovalPlugin({
+      ui: { locations: ['canvasMenu'] },
+      provider: {
+        type: '@imgly/background-removal'
+      }
+    })
   );
 }
