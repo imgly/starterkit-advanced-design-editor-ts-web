@@ -50,9 +50,8 @@ export class ExclusionAreaAssetSource implements EditorPlugin {
 
     if (cesdk == null) return;
 
-    // The zone controls sit behind this key. Enabling `ly.img.page` switches on
-    // every page child, including this one.
-    cesdk.feature.enable(['ly.img.page.printMarks.exclusionArea']);
+    // The zone controls sit behind this feature.
+    cesdk.features.configure({ 'ly.img.exclusionArea': { enabled: true } });
 
     cesdk.ui.addAssetLibraryEntry({
       id: SOURCE_ID,
